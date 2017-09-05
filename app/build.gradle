@@ -11,11 +11,22 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'my_release'
+            keyPassword 'object123'
+            storeFile file('my_release.keystore')
+            storePassword 'object123'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "content_provider", "com.jianjiacheng.testbitrise"
+            signingConfig signingConfigs.config
+            resValue "string", "app_name", "TestBitrise"
         }
 
         debug {
@@ -23,6 +34,7 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix ".debug"
             resValue "string", "content_provider", "com.jianjiacheng.testbitrise.debug"
+            resValue "string", "app_name", "TestBitriseDebug"
         }
     }
 }
